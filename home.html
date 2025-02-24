@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Showroom Ô Tô</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+        }
+        .container {
+            padding: 20px;
+        }
+        .car-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .car-item {
+            border: 1px solid #ccc;
+            padding: 15px;
+            width: 250px;
+            text-align: center;
+        }
+        .car-item img {
+            width: 100%;
+            height: auto;
+        }
+        .form-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Thành Chương Sáng Auto</div>
+    <div class="container">
+        <h2>Danh sách xe</h2>
+        <div class="car-list" id="car-list"></div>
+        
+        <div class="form-container">
+            <h2>Thêm xe mới</h2>
+            <input type="text" id="car-name" placeholder="Tên xe" required>
+            <input type="text" id="car-price" placeholder="Giá xe" required>
+            <input type="text" id="car-image" placeholder="URL hình ảnh" required>
+            <button onclick="addCar()">Thêm xe</button>
+        </div>
+    </div>
+
+    <script>
+        function getCarsFromStorage() {
+            return JSON.parse(localStorage.getItem("cars")) || [];
+        }
+
+        function saveCarsToStorage(cars) {
+            localStorage.setItem("cars", JSON.stringify(cars));
+        }
+
+        let cars = getCarsFromStorage();
+        const carList = document.getElementById("car-list");
+
+        function displayCars() {
+            carList.innerHTML = "";
+            cars.forEach(car => {
+                const carItem = document.createElement("div");
+                carItem.className = "car-item";
+                carItem.innerHTML = `
+                    <img src="${car.image}" alt="${car.name}">
+                    <h3>${car.name}</h3>
+                    <p>Giá: ${car.price}</p>
+                `;
+                carList.appendChild(carItem);
+            });
+        }
+
+        function addCar() {
+            const name = document.getElementById("car-name").value;
+            const price = document.getElementById("car-price").value;
+            const image = document.getElementById("car-image").value;
+
+            if (name && price && image) {
+                const newCar = { name, price, image };
+                cars.push(newCar);
+                saveCarsToStorage(cars);
+                displayCars();
+                document.getElementById("car-name").value = "";
+                document.getElementById("car-price").value = "";
+                document.getElementById("car-image").value = "";
+            } else {
+                alert("Vui lòng nhập đầy đủ thông tin!");
+            }
+        }
+
+        displayCars();
+    </script>
+</body>
+</html>
