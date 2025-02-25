@@ -3,244 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CARPLA - Chi nhánh Phạm Văn Đồng</title>
+    <title>Thành Chương Sáng Auto</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
+        :root {
+            --primary-color: #0B1F51;
+            --yellow-brand: #FFD700;
         }
 
-        /* Navigation */
-        .navbar {
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
         }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            color: #0B1F51;
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-menu a {
-            color: #333;
-            text-decoration: none;
-            font-size: 1rem;
+        .nav-link {
+            color: var(--primary-color) !important;
+            font-weight: 500;
         }
 
         .phone-number {
-            color: #333;
             font-weight: bold;
+            color: var(--primary-color);
         }
 
-        /* Breadcrumb */
-        .breadcrumb {
-            padding: 1rem 2rem;
-            background: #f5f5f5;
+        .hero-section {
+            background: var(--yellow-brand);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
         }
 
-        .breadcrumb a {
-            color: #666;
-            text-decoration: none;
+        .hero-title {
+            color: var(--primary-color);
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.2;
         }
 
-        /* Search Section */
+        .hero-hotline {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            display: inline-block;
+        }
+
         .search-section {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-        }
-
-        .search-box {
-            width: 100%;
-            padding: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-        }
-
-        /* Popular Searches */
-        .popular-searches {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin: 1rem 0;
-        }
-
-        .popular-searches a {
-            color: #0B1F51;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        /* Filters */
-        .filters {
-            display: flex;
-            gap: 1rem;
-            margin: 1rem 0;
-            overflow-x: auto;
-        }
-
-        .filter-button {
-            padding: 0.5rem 1rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            white-space: nowrap;
+            margin-top: -50px;
             background: white;
-            cursor: pointer;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
-        /* Car Categories */
-        .car-categories {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            margin: 2rem 0;
+        .nav-tabs .nav-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 1.2rem;
+            padding: 15px 30px;
+            border: none;
+        }
+
+        .nav-tabs .nav-link.active {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--yellow-brand);
         }
 
         .category-card {
-            border-radius: 12px;
-            padding: 1.5rem;
-            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            height: 180px;
             position: relative;
-            height: 150px;
-            display: flex;
-            align-items: flex-end;
+            overflow: hidden;
+            transition: transform 0.3s;
         }
 
-        .women-car { background: #FFE6E6; color: #333; }
-        .family-car { background: #E6F0FF; color: #333; }
-        .business-car { background: #F5E6D3; color: #333; }
-        .luxury-car { background: #FFE5CC; color: #333; }
-
-        /* Results Section */
-        .results-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 2rem 0;
+        .category-card:hover {
+            transform: translateY(-5px);
         }
 
-        .sort-dropdown {
-            padding: 0.5rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+        .category-luxury { background: #FFE5CC; }
+        .category-women { background: #FFE6E6; }
+        .category-business { background: #F5E6D3; }
+        .category-family { background: #E6F0FF; }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .car-categories {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .nav-menu {
-                display: none;
-            }
+        .form-control:focus {
+            border-color: var(--yellow-brand);
+            box-shadow: 0 0 0 0.25rem rgba(255, 215, 0, 0.25);
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">CARPLA</a>
-            <div class="nav-menu">
-                <a href="#">Mua xe</a>
-                <a href="#">Bán xe</a>
-                <span class="phone-number">0825 355 355</span>
-                <a href="home.html">Home</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="" alt="">
+                Thành Chương Sáng Auto
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="btn btn-primary" href="home.html">Mua xe</a>
+                    </li>
+                    <li class="nav-item">
+                        <span class="phone-number px-3">0865 730 616</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary" href="https://www.facebook.com/profile.php?id=100032680853176">Bán Xe và Liên Hệ Tư Vấn</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Breadcrumb -->
-    <div class="breadcrumb">
-        <a href="#">Trang chủ</a> > 
-        <a href="#">Mua xe</a> > 
-        Chi nhánh Nghệ An
-    </div>
-
-    <!-- Main Content -->
-    <div class="search-section">
-        <!-- Search Box -->
-        <input type="text" class="search-box" placeholder="Tìm kiếm nhãn hiệu, mẫu xe hoặc từ khóa">
-
-        <!-- Popular Searches -->
-        <div class="popular-searches">
-            <span>Tìm kiếm nhiều nhất:</span>
-            <a href="#">KIA</a>
-            <a href="#">Mitsubishi</a>
-            <a href="#">Vinfast</a>
-            <a href="#">Toyota</a>
-            <a href="#">Honda</a>
-            <a href="#">Mazda</a>
-        </div>
-
-        <!-- Branch Filter -->
-        <div class="popular-searches">
-            <span>Chi nhánh:</span>
-            <a href="#">Tất cả</a>
-            <a href="#">Long Biên</a>
-            <a href="#">Đà Nẵng</a>
-            <a href="#">Bình Dương</a>
-            <a href="#">Phạm Văn Đồng</a>
-        </div>
-
-        <!-- Filters -->
-        <div class="filters">
-            <button class="filter-button">Hãng xe</button>
-            <button class="filter-button">Kiểu dáng</button>
-            <button class="filter-button">Ngân sách</button>
-            <button class="filter-button">Năm</button>
-            <button class="filter-button">Hộp số</button>
-            <button class="filter-button">Số km</button>
-            <button class="filter-button">Màu sắc</button>
-            <button class="filter-button">Bộ lọc</button>
-        </div>
-
-        <!-- Car Categories -->
-        <div class="car-categories">
-            <div class="category-card women-car">
-                <h3>Dòng xe<br>dành cho nữ giới</h3>
-            </div>
-            <div class="category-card family-car">
-                <h3>Dòng xe<br>dành cho gia đình</h3>
-            </div>
-            <div class="category-card business-car">
-                <h3>Dòng xe<br>kinh doanh</h3>
-            </div>
-            <div class="category-card luxury-car">
-                <h3>Dòng xe<br>cao cấp</h3>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <img src="/image/background.png" alt="CARPLA" class="mb-4">
+            <h1 class="hero-title mb-4">LÊN ĐỜI CHIẾC XE<br>MÀ BẠN MONG MUỐN</h1>
+            <div class="hero-hotline">
+                Chi tiết chính sách vui lòng liên hệ: Hotline 0865 730 616
             </div>
         </div>
+    </section>
 
-        <!-- Results Header -->
-        <div class="results-header">
-            <div>Có 36 xe rao bán</div>
-            <select class="sort-dropdown">
-                <option>Sắp xếp theo</option>
-                <option>Giá thấp đến cao</option>
-                <option>Giá cao đến thấp</option>
-                <option>Mới nhất</option>
-            </select>
-        </div>
-    </div>
+    <!-- Search Section -->
+   
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -98,13 +98,48 @@
             border-color: var(--yellow-brand);
             box-shadow: 0 0 0 0.25rem rgba(255, 215, 0, 0.25);
         }
+        
+        .search-advanced {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .filters-badge {
+            background-color: var(--primary-color);
+            color: white;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        
+        .filters-badge .close {
+            color: white;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+        
+        #filterBadges {
+            margin-top: 10px;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 50px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="#">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
                 <img src="" alt="">
                 Thành Chương Sáng Auto
             </a>
@@ -115,21 +150,14 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Mua xe</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Bán xe</a>
-                    </li>  
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" onclick="" data-bs-toggle="dropdown">Giới thiệu</a>
-                    </li>
-                   
                     <li class="nav-item">
-                        <span class="phone-number px-3">0825 355 355</span>
+                        <a class="btn btn-primary" href="home.html">Mua xe</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-primary" href="https://www.facebook.com/profile.php?id=100032680853176">Liên Hệ</a>
+                        <span class="phone-number px-3">0865 730 616</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary" href="https://www.facebook.com/profile.php?id=100032680853176">Bán Xe và Liên Hệ Tư Vấn</a>
                     </li>
                 </ul>
             </div>
@@ -139,146 +167,465 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container text-center">
-            <img src="/api/placeholder/200/60" alt="CARPLA" class="mb-4">
             <h1 class="hero-title mb-4">LÊN ĐỜI CHIẾC XE<br>MÀ BẠN MONG MUỐN</h1>
-            <div class="hero-hotline">
-                Chi tiết chính sách vui lòng liên hệ: Hotline 0825 355 355
-            </div>
         </div>
     </section>
 
     <!-- Search Section -->
     <section class="container">
         <div class="search-section p-4">
+            <!-- Tìm kiếm nâng cao -->
+            <section class="search-advanced">
+                <!-- <h3 class="mb-3">Tìm kiếm xe</h3> -->
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <!-- <select class="form-select" id="filterBrand">
+                            <option value="">Tất cả hãng xe</option>
+                            <option value="Toyota">Toyota</option>
+                            <option value="Honda">Honda</option>
+                            <option value="Ford">Ford</option>
+                            <option value="Mazda">Mazda</option>
+                            <option value="Kia">Kia</option>
+                            <option value="Hyundai">Hyundai</option>
+                            <option value="Mercedes">Mercedes</option>
+                            <option value="BMW">BMW</option>
+                        </select> -->
+                    </div>
+                    <div class="col-md-3">
+                        <!-- <select class="form-select" id="filterType">
+                            <option value="">Tất cả loại xe</option>
+                            <option value="Sedan">Sedan</option>
+                            <option value="SUV">SUV</option>
+                            <option value="Hatchback">Hatchback</option>
+                            <option value="MPV">MPV</option>
+                            <option value="Bán tải">Bán tải</option>
+                        </select> -->
+                    </div>
+                    <div class="col-md-3">
+                        <!-- <select class="form-select" id="filterPrice">
+                            <option value="">Tất cả mức giá</option>
+                            <option value="500">Dưới 500 triệu</option>
+                            <option value="500-1000">500 triệu - 1 tỷ</option>
+                            <option value="1000-2000">1 tỷ - 2 tỷ</option>
+                            <option value="2000">Trên 2 tỷ</option>
+                        </select> -->
+                    </div>
+                    <div class="" >
+                        <button class="btn btn-primary w-100" id="searchButton">
+                            <i class="bi bi-search"></i>Tìm Kiếm
+                        </button>
+                    </div>
+                </div>
+                <div id="filterBadges" class="mt-3"></div>
+            </section>
+
             <!-- Danh sách xe có sẵn -->
-<section class="container mt-5">
-    <h2 class="text-center mb-4">Danh sách xe có sẵn</h2>
-    
-    <!-- Bộ lọc -->
-    <div class="row mb-4">
-        <div class="col-md-3">
-            <select class="form-select" id="filterBrand">
-                <option value="">Chọn hãng xe</option>
-                <option value="Toyota">Toyota</option>
-                <option value="Honda">Honda</option>
-                <option value="Ford">Ford</option>
-            </select>
-        </div>
-        <div class="col-md-3">
-            <select class="form-select" id="filterPrice">
-                <option value="">Chọn mức giá</option>
-                <option value="500">Dưới 500 triệu</option>
-                <option value="1000">500 triệu - 1 tỷ</option>
-                <option value="2000">Trên 1 tỷ</option>
-            </select>
-        </div>
-        <div class="col-md-3">
-            <select class="form-select" id="filterKm">
-                <option value="">Chọn số km</option>
-                <option value="10000">Dưới 10,000 km</option>
-                <option value="50000">10,000 - 50,000 km</option>
-                <option value="100000">Trên 50,000 km</option>
-            </select>
-        </div>
-        <div class="col-md-3">
-            <select class="form-select" id="filterCondition">
-                <option value="">Chọn tình trạng</option>
-                <option value="new">Mới</option>
-                <option value="used">Đã qua sử dụng</option>
-            </select>
-        </div>
-    </div>
-    
-    <!-- Danh sách xe -->
-    <div class="row" id="carList">
-        <!-- Dữ liệu xe sẽ được hiển thị ở đây bằng JavaScript -->
-    </div>
-</section>
+            <section class="container mt-3">
+                <h2 class="text-center mb-4">Danh sách xe có sẵn</h2>
+                
+                <!-- Bộ lọc phụ -->
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <select class="form-select" id="filterbrand">
+                            <option value="">Chọn hãng</option>
+                            <option value="Toyota">Toyota</option>
+                            <option value="Ford">Ford</option>
+                            <option value="Mercedes">Mercedes</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" id="filterKm">
+                            <option value="">Chọn số km</option>
+                            <option value="10000">Dưới 10,000 km</option>
+                            <option value="10000-50000">10,000 - 50,000 km</option>
+                            <option value="50000">Trên 50,000 km</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" id="filterCondition">
+                            <option value="">Chọn tình trạng</option>
+                            <option value="new">Mới</option>
+                            <option value="used">Đã qua sử dụng</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" id="filterYear">
+                            <option value="">Chọn năm sản xuất</option>
+                            <option value="2023">Từ 2023</option>
+                            <option value="2020-2022">2020 - 2022</option>
+                            <option value="2017-2019">2017 - 2019</option>
+                            <option value="2017">Trước 2017</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" id="sortBy">
+                            <option value="price-asc">Giá: Thấp đến cao</option>
+                            <option value="price-desc">Giá: Cao đến thấp</option>
+                            <option value="year-desc">Năm: Mới nhất</option>
+                            <option value="km-asc">Số km: Ít nhất</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Danh sách xe -->
+                <div class="row" id="carList">
+                    <!-- Dữ liệu xe sẽ được hiển thị ở đây bằng JavaScript -->
+                </div>
+            </section>
 
-<script>
-    // Danh sách xe mẫu
-    const cars = [
-        { image: '/image/toyotacamry.png', name: 'Toyota Camry', brand: 'Toyota', price: 900, km: 20000, condition: 'used' },
-        { image: '/image/hondacivic.png', name: 'Honda Civic', brand: 'Honda', price: 700, km: 15000, condition: 'used' },
-        { image: 'https://via.placeholder.com/300', name: 'Ford Ranger', brand: 'Ford', price: 1200, km: 30000, condition: 'new' }
-    ];
-    
-    // Hàm hiển thị danh sách xe
-    function displayCars() {
-        const carList = document.getElementById('carList');
-        carList.innerHTML = '';
-        
-        cars.forEach(car => {
-            const carHTML = `
-                <div class="col-md-4">
-                    <div class="card mb-4">
-                        <img src="${car.image}" class="card-img-top" alt="${car.name}">
-                        <div class="card-body">
-                            <h5 class="card-title">${car.name}</h5>
-                            <p class="card-text">Giá: ${car.price} triệu</p>
-                            <p class="card-text">Số km: ${car.km}</p>
-                            <p class="card-text">Tình trạng: ${car.condition === 'new' ? 'Mới' : 'Đã qua sử dụng'}</p>
-                        </div>
-                    </div>
-                </div>`;
-            carList.innerHTML += carHTML;
-        });
-    }
-    
-    // Gọi hàm hiển thị danh sách xe ban đầu
-    displayCars();
-</script>
+            <script>
+                // Danh sách xe mẫu
+                const cars = [
+                    { 
+                        image: '/image/toyotacamry.png', 
+                        company: 'Toyota', 
+                        name: 'Toyota Camry', 
+                        type: 'Sedan', 
+                        brand: 'Toyota', 
+                        price: 900, 
+                        km: 20000, 
+                        condition: 'used',
+                        year: 2020,
+                        status: 'Chưa nhận cọc',
+                    },
+                    { 
+                        image: '/image/hondacivic.png', 
+                        company: 'Honda', 
+                        name: 'Honda Civic', 
+                        type: 'Sedan', 
+                        brand: 'Honda', 
+                        price: 700, 
+                        km: 15000, 
+                        condition: 'used',
+                        year: 2021,
+                        status: 'Chưa nhận cọc',
+                    },
+                    { 
+                        image: '/image/fordranger.png', 
+                        company: 'Ford', 
+                        name: 'Ford Ranger', 
+                        type: 'Bán tải', 
+                        brand: 'Ford', 
+                        price: 1200, 
+                        km: 5000, 
+                        condition: 'new',
+                        year: 2023,
+                        status: 'Chưa nhận cọc',
+                    },
+                    { 
+                        image: '/image/mazda3.png', 
+                        company: 'Mazda', 
+                        name: 'Mazda 3', 
+                        type: 'Sedan', 
+                        brand: 'Mazda', 
+                        price: 650, 
+                        km: 30000, 
+                        condition: 'used',
+                        year: 2019,
+                        status: 'Đã nhận cọc',
+                    },
+                    { 
+                        image: '/image/hondacrv.png', 
+                        company: 'Honda', 
+                        name: 'Honda CR-V', 
+                        type: 'SUV', 
+                        brand: 'Honda', 
+                        price: 1100, 
+                        km: 12000, 
+                        condition: 'used',
+                        year: 2022,
+                        status: 'Chưa nhận cọc',
+                    },
+                    { 
+                        image: '/image/toyotafortuner.png', 
+                        company: 'Toyota', 
+                        name: 'Toyota Fortuner', 
+                        type: 'SUV', 
+                        brand: 'Toyota', 
+                        price: 1300, 
+                        km: 8000, 
+                        condition: 'new',
+                        year: 2023,
+                        status: 'Chưa nhận cọc',
+                    },
+                    { 
+                        image: '/image/mercedesbenz.png', 
+                        company: 'Mercedes', 
+                        name: 'Mercedes-Benz C300', 
+                        type: 'Sedan', 
+                        brand: 'Mercedes', 
+                        price: 2500, 
+                        km: 10000, 
+                        condition: 'used',
+                        year: 2022,
+                        status: 'Chưa nhận cọc',
+                    }
+                ];
+                
+                // Các filter đang áp dụng
+                let activeFilters = {
+                    brand: '',
+                    type: '',
+                    price: '',
+                    km: '',
+                    condition: '',
+                    year: ''
+                };
+                
+                // Format giá tiền
+                function formatPrice(price) {
+                    if(price>=1000){
+                        price=price/1000;
+                        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " tỷ"
+                    }
+                    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " triệu";
+                }
+                
+                // Format số km
+                function formatKm(km) {
+                    return km.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " km";
+                }
+                
+                // Lọc danh sách xe theo các tiêu chí
+                function filterCars() {
+                    return cars.filter(car => {
+                        // Lọc theo hãng xe
+                        if (activeFilters.brand && car.brand !== activeFilters.brand) {
+                            return false;
+                        }
+                        
+                        // Lọc theo loại xe
+                        if (activeFilters.type && car.type !== activeFilters.type) {
+                            return false;
+                        }
+                        
+                        // Lọc theo giá
+                        if (activeFilters.price) {
+                            if (activeFilters.price === '500' && car.price >= 500) {
+                                return false;
+                            } else if (activeFilters.price === '500-1000' && (car.price < 500 || car.price > 1000)) {
+                                return false;
+                            } else if (activeFilters.price === '1000-2000' && (car.price < 1000 || car.price > 2000)) {
+                                return false;
+                            } else if (activeFilters.price === '2000' && car.price <= 2000) {
+                                return false;
+                            }
+                        }
+                        
+                        // Lọc theo số km
+                        if (activeFilters.km) {
+                            if (activeFilters.km === '10000' && car.km >= 10000) {
+                                return false;
+                            } else if (activeFilters.km === '10000-50000' && (car.km < 10000 || car.km > 50000)) {
+                                return false;
+                            } else if (activeFilters.km === '50000' && car.km <= 50000) {
+                                return false;
+                            }
+                        }
+                        
+                        // Lọc theo tình trạng
+                        if (activeFilters.condition && car.condition !== activeFilters.condition) {
+                            return false;
+                        }
+                        
+                        // Lọc theo năm sản xuất
+                        if (activeFilters.year) {
+                            if (activeFilters.year === '2023' && car.year < 2023) {
+                                return false;
+                            } else if (activeFilters.year === '2020-2022' && (car.year < 2020 || car.year > 2022)) {
+                                return false;
+                            } else if (activeFilters.year === '2017-2019' && (car.year < 2017 || car.year > 2019)) {
+                                return false;
+                            } else if (activeFilters.year === '2017' && car.year >= 2017) {
+                                return false;
+                            }
+                        }
+                        
+                        return true;
+                    });
+                }
+                
+                // Sort danh sách xe
+                function sortCars(filteredCars) {
+                    const sortBy = document.getElementById('sortBy').value;
+                    
+                    if (sortBy === 'price-asc') {
+                        return filteredCars.sort((a, b) => a.price - b.price);
+                    } else if (sortBy === 'price-desc') {
+                        return filteredCars.sort((a, b) => b.price - a.price);
+                    } else if (sortBy === 'year-desc') {
+                        return filteredCars.sort((a, b) => b.year - a.year);
+                    } else if (sortBy === 'km-asc') {
+                        return filteredCars.sort((a, b) => a.km - b.km);
+                    }
+                    
+                    return filteredCars;
+                }
+                
+                // Hiển thị các filter đang áp dụng
+                function updateFilterBadges() {
+                    const filterBadges = document.getElementById('filterBadges');
+                    filterBadges.innerHTML = '';
+                    
+                    const filterLabels = {
+                        brand: 'Hãng xe',
+                        type: 'Loại xe',
+                        price: 'Giá',
+                        km: 'Số KM',
+                        condition: 'Tình trạng',
+                        year: 'Năm sản xuất'
+                    };
+                    
+                    // Tạo thẻ hiển thị các filter
+                    for (const filter in activeFilters) {
+                        if (activeFilters[filter]) {
+                            let displayValue = activeFilters[filter];
+                            
+                            // Format giá trị hiển thị
+                            if(filter === 'brand'){
+                                if(displayCars=== 'Toyata'){
+                                    displayCars='Toyota';
+                                }else if(displayCars === 'Ford'){
+                                    displayCars='Ford';
+                                }else if(displayCars==='Mercedes'){
+                                    displayCars='Mercedes';
+                                }
+                            } else if (filter === 'price') {
+                                if (displayValue === '500') {
+                                    displayValue = 'Dưới 500 triệu';
+                                } else if (displayValue === '500-1000') {
+                                    displayValue = '500 triệu - 1 tỷ';
+                                } else if (displayValue === '1000-2000') {
+                                    displayValue = '1 tỷ - 2 tỷ';
+                                } else if (displayValue === '2000') {
+                                    displayValue = 'Trên 2 tỷ';
+                                }
+                            } else if (filter === 'km') {
+                                if (displayValue === '10000') {
+                                    displayValue = 'Dưới 10.000 km';
+                                } else if (displayValue === '10000-50000') {
+                                    displayValue = '10.000 - 50.000 km';
+                                } else if (displayValue === '50000') {
+                                    displayValue = 'Trên 50.000 km';
+                                }
+                            } else if (filter === 'condition') {
+                                displayValue = displayValue === 'new' ? 'Mới' : 'Đã qua sử dụng';
+                            } else if (filter === 'year') {
+                                if (displayValue === '2023') {
+                                    displayValue = 'Từ 2023';
+                                } else if (displayValue === '2020-2022') {
+                                    displayValue = '2020 - 2022';
+                                } else if (displayValue === '2017-2019') {
+                                    displayValue = '2017 - 2019';
+                                } else if (displayValue === '2017') {
+                                    displayValue = 'Trước 2017';
+                                }
+                            }
+                            
+                            const badge = document.createElement('span');
+                            badge.className = 'filters-badge';
+                            badge.innerHTML = `${filterLabels[filter]}: ${displayValue} <span class="close" data-filter="${filter}">✕</span>`;
+                            filterBadges.appendChild(badge);
+                        }
+                    }
+                    
+                    // Thêm sự kiện click để xóa filter
+                    const closeButtons = document.querySelectorAll('.filters-badge .close');
+                    closeButtons.forEach(button => {
+                        button.addEventListener('click', function() {
+                            const filter = this.getAttribute('data-filter');
+                            activeFilters[filter] = '';
+                            
+                            // Reset giá trị trong dropdown
+                            document.getElementById('filter' + filter.charAt(0).toUpperCase() + filter.slice(1)).value = '';
+                            
+                            updateFilterBadges();
+                            displayCars();
+                        });
+                    });
+                }
+                
+                // Hiển thị danh sách xe
+                function displayCars() {
+                    const carList = document.getElementById('carList');
+                    const filteredCars = filterCars();
+                    const sortedCars = sortCars(filteredCars);
+                    
+                    carList.innerHTML = '';
+                    
+                    if (sortedCars.length === 0) {
+                        carList.innerHTML = `
+                            <div class="col-12">
+                                <div class="no-results">
+                                    <h4>Không tìm thấy xe nào phù hợp với tiêu chí tìm kiếm</h4>
+                                    <p>Vui lòng thử lại với các tiêu chí khác hoặc liên hệ với chúng tôi để được tư vấn</p>
+                                </div>
+                            </div>
+                        `;
+                        return;
+                    }
+                    
+                    sortedCars.forEach(car => {
+                        const carHTML = `
+                            <div class="col-md-4 mb-4">
+                                <div class="card h-100">
+                                    <img src="${car.image}" class="card-img-top" alt="${car.name}" style="height: 200px; object-fit: cover;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${car.name}</h5>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span class="badge bg-primary">${car.type}</span>
+                                            <span class="badge bg-${car.condition === 'new' ? 'success' : 'secondary'}">${car.condition === 'new' ? 'Mới' : 'Đã qua sử dụng'}</span>
+                                        </div>
+                                        <p class="card-text"><strong>Hãng:</strong> ${car.brand}</p>
+                                        <p class="card-text"><strong>Giá:</strong> ${formatPrice(car.price)}</p>
+                                        <p class="card-text"><strong>Số km:</strong> ${formatKm(car.km)}</p>
+                                        <p class="card-text"><strong>Năm sản xuất:</strong> ${car.year}</p>
+                                        <p class="card-text"><strong>Trạng thái::</strong> ${car.status}</p>
+                                        <a href="#" class="btn btn-primary mt-2 w-100">Xem chi tiết</a>
+                                    </div>
+                                </div>
+                            </div>`;
+                        carList.innerHTML += carHTML;
+                    });
+                }
+                
+                // Khởi tạo khi trang tải xong
+                document.addEventListener('DOMContentLoaded', function() {
+                    
+                    
+                    // Sự kiện khi thay đổi các bộ lọc phụ
+                    document.getElementById('filterbrand').addEventListener('change', function() {
+                        activeFilters.brand = this.value;
+                        updateFilterBadges();
+                        displayCars();
+                    });
 
-            <ul class="nav nav-tabs border-0 mb-4" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" data-bs-toggle="tab" href="#buy">Mua xe</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#sell">Bán xe</a>
-                </li>
-            </ul>
-
-            <div class="tab-content">
-                <div class="tab-pane fade show active" id="buy">
-                    <div class="row g-3">
-                        <div class="col-md-8">
-                            <input type="text" class="form-control form-control-lg" placeholder="Tìm kiếm bằng nhãn hiệu, mẫu xe hoặc từ khóa">
-                        </div>
-                        <div class="col-md-4">
-                            <select class="form-select form-select-lg">
-                                <option selected>Chọn hãng xe</option>
-                                <option>Toyota</option>
-                                <option>Honda</option>
-                                <option>Ford</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Categories -->
-            <div class="row g-4 mt-4">
-                <div class="col-md-3">
-                    <div class="category-card category-luxury">
-                        <h3>Dòng xe<br>cao cấp</h3>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="category-card category-women">
-                        <h3>Dòng xe<br>dành cho nữ giới</h3>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="category-card category-business">
-                        <h3>Dòng xe<br>kinh doanh</h3>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="category-card category-family">
-                        <h3>Dòng xe<br>dành cho gia đình</h3>
-                    </div>
-                </div>
-            </div>
+                    document.getElementById('filterKm').addEventListener('change', function() {
+                        activeFilters.km = this.value;
+                        updateFilterBadges();
+                        displayCars();
+                    });
+                    
+                    document.getElementById('filterCondition').addEventListener('change', function() {
+                        activeFilters.condition = this.value;
+                        updateFilterBadges();
+                        displayCars();
+                    });
+                    
+                    document.getElementById('filterYear').addEventListener('change', function() {
+                        activeFilters.year = this.value;
+                        updateFilterBadges();
+                        displayCars();
+                    });
+                    
+                    document.getElementById('sortBy').addEventListener('change', function() {
+                        displayCars();
+                    });
+                    
+                    // Hiển thị danh sách xe ban đầu
+                    displayCars();
+                });
+            </script>          
         </div>
     </section>
 
