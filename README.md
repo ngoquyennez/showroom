@@ -1,2 +1,2 @@
-web showroom o tô
-sử dụng localstorage để lưu trữ thông tin xe
+web showroom ô tô
+quản lý mua bán ô tô
